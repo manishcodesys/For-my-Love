@@ -1,148 +1,319 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=4.0">
-<title>Important Question ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>I'm Sorry ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
 body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-    height:200vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-    overflow:hidden;
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(-45deg,#ff4e50,#fc913a,#f9d423,#ff4e50);
+background-size:400% 400%;
+animation:gradient 10s ease infinite;
+
+overflow:hidden;
+}
+
+@keyframes gradient{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+
+}
+
+.card{
+
+background:rgba(255,255,255,0.92);
+padding:45px;
+border-radius:25px;
+text-align:center;
+
+box-shadow:0 20px 80px rgba(0,0,0,0.3);
+
+max-width:420px;
+width:90%;
+
+animation:fade 1.5s ease;
+
+}
+
+.sorry{
+
+font-family:'Pacifico',cursive;
+font-size:28px;
+color:#ff1744;
+margin-bottom:10px;
+text-shadow:0 4px 12px rgba(0,0,0,0.2);
+
 }
 
 h1{
-    color:white;
-    font-size:60px;
-    margin-bottom:40px;
+
+font-family:'Pacifico',cursive;
+font-size:34px;
+color:#ff2e63;
+
+margin-bottom:30px;
+
+text-shadow:0 3px 10px rgba(0,0,0,0.2);
+
 }
 
-.button-container{
-    position:relative;
-    width:300px;
-    height:200px;
+.buttons{
+
+position:relative;
+height:130px;
+
 }
 
 button{
-    padding:15px 30px;
-    font-size:20px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
+
+padding:15px 30px;
+font-size:18px;
+
+border:none;
+border-radius:50px;
+
+cursor:pointer;
+
+transition:0.3s;
+
 }
 
 #yes{
-    background:#28a745;
-    color:white;
+
+background:linear-gradient(45deg,#ff416c,#ff4b2b);
+
+color:white;
+
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+
+}
+
+#yes:hover{
+
+transform:scale(1.15);
+
 }
 
 #no{
-    background:#dc3545;
-    color:white;
-    position:absolute;
-    left:190px;
+
+background:#444;
+
+color:white;
+
+position:absolute;
+
+left:200px;
+
 }
 
-#message{
-    display:none;
-    font-size:35px;
-    color:white;
-    margin-top:20px;
-}
+#loveMessage{
 
-/* Floating hearts */
+display:none;
+
+font-family:'Pacifico',cursive;
+
+font-size:32px;
+
+color:#ff2e63;
+
+margin-top:25px;
+
+animation:fade 2s ease;
+
+}
 
 .heart{
-    position:fixed;
-    bottom:-10px;
-    font-size:20px;
-    animation:float 6s linear infinite;
+
+position:fixed;
+
+bottom:-20px;
+
+font-size:20px;
+
+animation:float 6s linear infinite;
+
 }
 
 @keyframes float{
-    0%{
-        transform:translateY(0);
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-100vh);
-        opacity:0;
-    }
+
+0%{
+transform:translateY(0);
+opacity:1;
+}
+
+100%{
+transform:translateY(-110vh);
+opacity:0;
+}
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<h1>Do you Love Me? ❤️</h1>
+<div class="card">
 
-<div class="button-container">
-<button id="yes" onclick="love()">Yes ❤️</button>
+<p class="sorry">I'm really sorry baby ❤️</p>
+
+<h1>Do You Love Me? ❤️</h1>
+
+<div class="buttons">
+
+<button id="yes" onclick="showLove()">Yes ❤️</button>
+
 <button id="no">No 😢</button>
+
 </div>
 
-<div id="message">🌹 You are the Love of My Life ❤️</div>
+<div id="loveMessage">
 
-<audio id="music" autoplay loop>
+🌹 You Are The Love Of My Life ❤️
+
+</div>
+
+</div>
+
+<audio autoplay loop>
+
 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+
 </audio>
 
 <script>
 
-// No button escaping
-const noBtn = document.getElementById("no");
+const noBtn=document.getElementById("no");
 
 function moveButton(){
-    const container = document.querySelector(".button-container");
 
-    const maxX = container.clientWidth - noBtn.offsetWidth;
-    const maxY = container.clientHeight - noBtn.offsetHeight;
+const card=document.querySelector(".card");
 
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+const maxX=card.clientWidth-100;
+const maxY=120;
 
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
+const randomX=Math.random()*maxX;
+const randomY=Math.random()*maxY;
+
+noBtn.style.left=randomX+"px";
+noBtn.style.top=randomY+"px";
+
 }
 
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("touchstart",moveButton);
 
-// Yes button action
-function love(){
-    document.getElementById("message").style.display="block";
+function showLove(){
+
+document.getElementById("loveMessage").style.display="block";
+
+heartExplosion();
+
 }
 
-// Floating hearts generator
 function createHeart(){
 
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="💖";
+const heart=document.createElement("div");
 
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(20+Math.random()*30)+"px";
+heart.classList.add("heart");
 
-    document.body.appendChild(heart);
+heart.innerHTML="💖";
 
-    setTimeout(()=>{
-        heart.remove();
-    },6000)
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*30)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},6000);
+
 }
 
 setInterval(createHeart,300);
+
+function heartExplosion(){
+
+for(let i=0;i<50;i++){
+
+const heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.style.position="fixed";
+
+heart.style.left="50%";
+heart.style.top="50%";
+
+heart.style.fontSize="26px";
+
+heart.style.transition="1s";
+
+document.body.appendChild(heart);
+
+const x=(Math.random()-0.5)*700;
+const y=(Math.random()-0.5)*700;
+
+setTimeout(()=>{
+
+heart.style.transform=`translate(${x}px,${y}px)`;
+
+heart.style.opacity=0;
+
+},10);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},1000);
+
+}
+
+}
 
 </script>
 
 </body>
 </html>
+```
