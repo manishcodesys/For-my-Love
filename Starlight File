@@ -1,0 +1,149 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Important Question ❤️</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    overflow:hidden;
+}
+
+h1{
+    color:white;
+    font-size:40px;
+    margin-bottom:30px;
+}
+
+.button-container{
+    position:relative;
+    width:300px;
+    height:200px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+#yes{
+    background:#28a745;
+    color:white;
+}
+
+#no{
+    background:#dc3545;
+    color:white;
+    position:absolute;
+    left:160px;
+}
+
+#message{
+    display:none;
+    font-size:35px;
+    color:white;
+    margin-top:20px;
+}
+
+/* Floating hearts */
+
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:20px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-100vh);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Do you Love Me? ❤️</h1>
+
+<div class="button-container">
+<button id="yes" onclick="love()">Yes ❤️</button>
+<button id="no">No 😢</button>
+</div>
+
+<div id="message">🌹 You are the Love of My Life ❤️</div>
+
+<audio id="music" autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// No button escaping
+const noBtn = document.getElementById("no");
+
+function moveButton(){
+    const container = document.querySelector(".button-container");
+
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+// Yes button action
+function love(){
+    document.getElementById("message").style.display="block";
+}
+
+// Floating hearts generator
+function createHeart(){
+
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*30)+"px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },6000)
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
